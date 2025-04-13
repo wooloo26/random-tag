@@ -1,7 +1,7 @@
 #include "random_tag.h"
 #include <stdlib.h>
 
-static Attribute define_attribute(const char *name, const Option *options, int count, int required, float show_probability, int multi_select)
+Attribute define_attribute(const char *name, const Option *options, int count, int required, float show_probability, int multi_select)
 {
     Attribute attr;
     attr.name = name;
@@ -13,7 +13,7 @@ static Attribute define_attribute(const char *name, const Option *options, int c
     return attr;
 }
 
-static void generate_random_character(Attribute *attributes, int length)
+void generate_random_character(Attribute *attributes, int length)
 {
     for (size_t i = 0; i < length; i++)
     {
@@ -49,7 +49,7 @@ static void generate_random_character(Attribute *attributes, int length)
     }
 }
 
-static const Option *select_option(const Option *options, int count)
+const Option *select_option(const Option *options, int count)
 {
     float rand_val = get_random_probability();
 
@@ -76,12 +76,12 @@ static const Option *select_option(const Option *options, int count)
     return &options[count - 1];
 }
 
-static float get_random_probability(void)
+float get_random_probability(void)
 {
     return (float)rand() / RAND_MAX;
 }
 
-static void print_attribute(const Attribute *attr, const Option *option)
+void print_attribute(const Attribute *attr, const Option *option)
 {
     printf("%-5s：%s\n", attr->name, option->name);
 }

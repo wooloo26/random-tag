@@ -4,7 +4,6 @@
 #include <errno.h>
 #include <stdbool.h>
 
-// Define data type enumeration
 typedef enum
 {
     TYPE_INT,
@@ -26,20 +25,17 @@ bool get_input(void *value, DataType type, const char *prompt)
 
     while (!success)
     {
-        // Display the prompt message
         printf("%s", prompt);
 
-        // Read the input line
+        // User pressed Ctrl+D (EOF) or an error occurred
         if (fgets(buffer, sizeof(buffer), stdin) == NULL)
         {
-            // User pressed Ctrl+D (EOF) or an error occurred
             return false;
         }
 
         // Remove the trailing newline character (if any)
         buffer[strcspn(buffer, "\n")] = '\0';
 
-        // Parse the input based on the type
         switch (type)
         {
         case TYPE_INT:
